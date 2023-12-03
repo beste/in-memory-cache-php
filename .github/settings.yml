@@ -1,0 +1,14 @@
+# https://probot.github.io/apps/settings/
+
+repository:
+  allow_squash_merge: true
+  allow_merge_commit: false
+  allow_rebase_merge: true
+  default_branch: main
+  delete_branch_on_merge: true
+  enable_automated_security_fixes: true
+  enable_vulnerability_alerts: true
+  has_downloads: false
+  has_projects: true
+  has_wiki: false
+  use_squash_pr_title_as_default: true
