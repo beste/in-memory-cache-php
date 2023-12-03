@@ -1,7 +1,8 @@
 {
-    "name": "beste/array-cache",
-    "description": "A PSR-6 Array Cache",
-    "license": "ISC",
+    "name": "beste/in-memory-cache",
+    "description": "A PSR-6 In-Memory cache that can be used as a fallback implementation and/or in tests.",
+    "keywords": ["cache", "psr-6", "beste"],
+    "license": "MIT",
     "type": "library",
     "authors": [
         {
@@ -10,26 +11,33 @@
         }
     ],
     "require": {
-        "php": "~8.2.0 || ~8.3.0"
+        "php": "~8.1.0 || ~8.2.0 || ~8.3.0",
+        "psr/cache": "^2.0 || ^3.0",
+        "psr/clock": "^1.0",
+        "psr/clock-implementation": "^1.0"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.40.2",
+        "beste/clock": "^3.0",
+        "friendsofphp/php-cs-fixer": "^3.41.0",
         "phpstan/extension-installer": "^1.3.1",
-        "phpstan/phpstan": "^1.10.47",
+        "phpstan/phpstan": "^1.10.48",
         "phpstan/phpstan-deprecation-rules": "^1.1.4",
         "phpstan/phpstan-phpunit": "^1.3.15",
         "phpstan/phpstan-strict-rules": "^1.5.2",
-        "phpunit/phpunit": "^10.5.1",
+        "phpunit/phpunit": "^10.5.2",
         "symfony/var-dumper": "^6.4.0"
+    },
+    "provide": {
+        "psr/cache-implementation": "2.0 || 3.0"
     },
     "autoload": {
         "psr-4": {
-            "Beste\\Psr\\Cache\\": "src"
+            "Beste\\Cache\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Beste\\Psr\\Cache\\Tests\\": "tests"
+            "Beste\\Cache\\Tests\\": "tests"
         }
     },
     "config": {
