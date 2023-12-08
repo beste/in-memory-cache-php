@@ -2,10 +2,10 @@
 
 A [PSR-6](https://www.php-fig.org/psr/psr-6/) In-Memory cache that can be used as a default implementation and in tests.
 
-[![Current version](https://img.shields.io/packagist/v/beste/in-memory-cache-php.svg?logo=composer)](https://packagist.org/packages/beste/in-memory-cache-php)
-[![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/beste/in-memory-cache-php)](https://packagist.org/packages/beste/in-memory-cache-php)
-[![Monthly Downloads](https://img.shields.io/packagist/dm/beste/in-memory-cache-php.svg)](https://packagist.org/packages/beste/in-memory-cache-php/stats)
-[![Total Downloads](https://img.shields.io/packagist/dt/beste/in-memory-cache-php.svg)](https://packagist.org/packages/beste/in-memory-cache-php/stats)
+[![Current version](https://img.shields.io/packagist/v/beste/in-memory-cache.svg?logo=composer)](https://packagist.org/packages/beste/in-memory-cache)
+[![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/beste/in-memory-cache)](https://packagist.org/packages/beste/in-memory-cache)
+[![Monthly Downloads](https://img.shields.io/packagist/dm/beste/in-memory-cache.svg)](https://packagist.org/packages/beste/in-memory-cache/stats)
+[![Total Downloads](https://img.shields.io/packagist/dt/beste/in-memory-cache.svg)](https://packagist.org/packages/beste/in-memory-cache/stats)
 [![Tests](https://github.com/beste/in-memory-cache-php/actions/workflows/tests.yml/badge.svg)](https://github.com/beste/in-memory-cache-php/actions/workflows/tests.yml)
 
 ## Installation
