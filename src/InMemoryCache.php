@@ -2,19 +2,30 @@
 
 namespace Beste\Cache;
 
+use DateTimeImmutable;
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Clock\ClockInterface;
 
 final class InMemoryCache implements CacheItemPoolInterface
 {
+    private readonly ClockInterface $clock;
+
     /** @var array<string, CacheItemInterface> */
     private array $items;
     /** @var array<string, CacheItemInterface> */
     private array $deferredItems;
 
-    public function __construct(private readonly ClockInterface $clock)
-    {
+    public function __construct(
+        ClockInterface $clock = null
+    ) {
+        $this->clock = $clock ?? new class () implements ClockInterface {
+            public function now(): DateTimeImmutable
+            {
+                return new DateTimeImmutable();
+            }
+
+        };
         $this->items = [];
         $this->deferredItems = [];
     }

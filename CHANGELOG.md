@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+* The Cache can now be instantiated without providing a [PSR-20](https://www.php-fig.org/psr/psr-20/) clock implementation.
+* The library doesn't depend on the [`beste/clock` library](https://github.com/beste/clock) anymore.
+
 ## [1.0.0] - 2023-12-09
 
 Initial Release

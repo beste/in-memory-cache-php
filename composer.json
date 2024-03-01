@@ -13,8 +13,7 @@
     "require": {
         "php": "~8.1.0 || ~8.2.0 || ~8.3.0",
         "psr/cache": "^2.0 || ^3.0",
-        "psr/clock": "^1.0",
-        "psr/clock-implementation": "^1.0"
+        "psr/clock": "^1.0"
     },
     "require-dev": {
         "beste/clock": "^3.0",
@@ -29,6 +28,9 @@
     },
     "provide": {
         "psr/cache-implementation": "2.0 || 3.0"
+    },
+    "suggest": {
+        "psr/clock-implementation": "Allows injecting a Clock, for example a frozen clock for testing"
     },
     "autoload": {
         "psr-4": {
