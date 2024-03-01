@@ -10,21 +10,16 @@ A [PSR-6](https://www.php-fig.org/psr/psr-6/) In-Memory cache that can be used a
 
 ## Installation
 
-In order to use this cache implementation, you also need to install a [PSR-20](https://www.php-fig.org/psr/psr-20/) [Clock Implementation](https://packagist.org/providers/psr/clock-implementation),
-for example, the [`beste/clock`](https://packagist.org/packages/beste/clock).
-
 ```shell
-composer require beste/in-memory-cache beste/clock
+composer require beste/in-memory-cache
 ```
 
 ## Usage
 
 ```php
 use Beste\Cache\InMemoryCache;
-use Beste\Clock\SystemClock;
 
-$clock = SystemClock::create();
-$cache = new InMemoryCache($clock);
+$cache = new InMemoryCache();
 
 $item = $cache->getItem('key');
 
@@ -42,7 +37,26 @@ assert($item->isHit() === true);
 assert($item->get() === 'value');
 ```
 
-The test suite
+You can also provide your own [PSR-20](https://www.php-fig.org/psr/psr-20/) clock implementation, for example a frozen
+clock for testing, for example from the [`beste/clock` library](https://github.com/beste/clock).
+
+```php
+use Beste\Clock\FrozenClock;
+use Beste\Cache\InMemoryCache;
+
+$clock = FrozenClock::fromUTC()
+$cache = new InMemoryCache();
+
+$item = $cache->getItem('key');
+$item->set('value')->expiresAfter(new DateInterval('PT5M'));
+$cache->save($item);
+
+$clock->setTo($clock->now()->add(new DateInterval('PT2M')));
+assert($cache->getItem('key')->isHit() === true);
+
+$clock->setTo($clock->now()->add(new DateInterval('PT5M')));
+assert($cache->getItem('key')->isHit() === false);
+```
 
 ## Running tests
 

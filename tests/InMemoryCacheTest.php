@@ -20,6 +20,20 @@ final class InMemoryCacheTest extends TestCase
         $this->pool = new InMemoryCache($this->clock);
     }
 
+    public function testItWorksWithoutProvidingAClock(): void
+    {
+        $pool = new InMemoryCache();
+        $item = $pool->getItem('item');
+
+        self::assertFalse($item->isHit());
+
+        $item->set('value')->expiresAfter(new \DateInterval('PT5M'));
+        $pool->save($item);
+
+        $item = $pool->getItem('item');
+        self::assertTrue($item->isHit());
+    }
+
     public function testItReturnsANewItem(): void
     {
         $item = $this->pool->getItem('item');
