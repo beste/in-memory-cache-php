@@ -17,7 +17,7 @@ final class InMemoryCache implements CacheItemPoolInterface
     private array $deferredItems;
 
     public function __construct(
-        ClockInterface $clock = null
+        ClockInterface $clock = null,
     ) {
         $this->clock = $clock ?? new class () implements ClockInterface {
             public function now(): DateTimeImmutable

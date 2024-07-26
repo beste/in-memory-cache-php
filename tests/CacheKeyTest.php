@@ -8,6 +8,9 @@ use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
 use PHPUnit\Framework\TestCase;
 use Psr\Cache\InvalidArgumentException;
 
+/**
+ * @internal
+ */
 class CacheKeyTest extends TestCase
 {
     #[DataProvider('validValues')]
