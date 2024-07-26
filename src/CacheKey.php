@@ -11,7 +11,7 @@ final class CacheKey
 
     public static function fromString(string $value): self
     {
-        if (preg_match('/^[a-zA-Z0-9_.-]{1,64}$/u', $value) !== 1) {
+        if (preg_match('/^[a-zA-Z0-9_.-]+$/u', $value) !== 1) {
             throw InvalidArgument::invalidKey();
         }
 

@@ -44,7 +44,6 @@ class CacheKeyTest extends TestCase
         return [
             'empty string' => [''],
             'invalid character' => ['\\'],
-            'too long' => [str_repeat('x', 65)],
         ];
     }
 }
