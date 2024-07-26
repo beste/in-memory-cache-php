@@ -7,6 +7,7 @@
   encoding and a length of up to 64 characters. Implementing libraries MAY support additional characters and encodings
   or longer lengths, but must support at least that minimum.
   * Dashes (`-`) are now allowed in cache keys.
+  * The arbitrary maximum key length of 64 characters has been removed.
 
 
 ## [1.1.0] - 2024-03-02
