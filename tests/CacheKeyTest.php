@@ -32,6 +32,7 @@ class CacheKeyTest extends TestCase
         return [
             'single char' => ['x'],
             '64 chars' => [str_repeat('x', 64)],
+            'all allowed chars' => ['aZ0_.-'],
         ];
     }
 
