@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## 1.3.1 - 2024-08-26
+
+* Made clock argument of `InMemoryCache` constructor explicitly nullable
+  ([#4](https://github.com/beste/in-memory-cache-php/pull/4))
+
 ## 1.3.0 - 2024-08-17
 
 * Added support for PHP 8.4
