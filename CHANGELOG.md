@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+* Added support for PHP 8.5
+
 ## 1.3.1 - 2024-08-26
 
 * Made clock argument of `InMemoryCache` constructor explicitly nullable
