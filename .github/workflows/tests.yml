@@ -68,7 +68,7 @@ jobs:
         env:
           COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: ramsey/composer-install@v3
+      - uses: ramsey/composer-install@v4
         with:
           composer-options: "${{ matrix.composer-options }}"
 
