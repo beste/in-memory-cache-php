@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+* Dropped support for PHP <8.3
+
 ## 1.4.0 - 2025-09-30
 
 * Added support for PHP 8.5
