@@ -11,7 +11,7 @@ use Psr\Cache\InvalidArgumentException;
 /**
  * @internal
  */
-class CacheKeyTest extends TestCase
+final class CacheKeyTest extends TestCase
 {
     #[DataProvider('validValues')]
     #[DoesNotPerformAssertions]

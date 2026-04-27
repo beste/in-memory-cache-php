@@ -12,6 +12,7 @@ use PHPUnit\Framework\TestCase;
 final class InMemoryCacheTest extends TestCase
 {
     private FrozenClock $clock;
+
     private InMemoryCache $pool;
 
     protected function setUp(): void
@@ -25,21 +26,21 @@ final class InMemoryCacheTest extends TestCase
         $pool = new InMemoryCache();
         $item = $pool->getItem('item');
 
-        self::assertFalse($item->isHit());
+        $this->assertFalse($item->isHit());
 
         $item->set('value')->expiresAfter(new \DateInterval('PT5M'));
         $pool->save($item);
 
         $item = $pool->getItem('item');
-        self::assertTrue($item->isHit());
+        $this->assertTrue($item->isHit());
     }
 
     public function testItReturnsANewItem(): void
     {
         $item = $this->pool->getItem('item');
 
-        self::assertFalse($item->isHit());
-        self::assertNull($item->get());
+        $this->assertFalse($item->isHit());
+        $this->assertNull($item->get());
     }
 
     public function testItUsesTheProvidedClock(): void
@@ -50,10 +51,10 @@ final class InMemoryCacheTest extends TestCase
         $this->pool->save($item);
 
         $this->clock->setTo($this->clock->now()->add(new \DateInterval('PT1H')));
-        self::assertTrue($this->pool->getItem('item')->isHit());
+        $this->assertTrue($this->pool->getItem('item')->isHit());
 
         $this->clock->setTo($this->clock->now()->add(new \DateInterval('PT2H')));
-        self::assertFalse($this->pool->getItem('item')->isHit());
+        $this->assertFalse($this->pool->getItem('item')->isHit());
     }
 
     public function testItSavesAnItem(): void
@@ -63,19 +64,19 @@ final class InMemoryCacheTest extends TestCase
         $item->set('value');
         $this->pool->save($item);
 
-        self::assertTrue($this->pool->getItem('item')->isHit());
-        self::assertSame('value', $this->pool->getItem('item')->get());
+        $this->assertTrue($this->pool->getItem('item')->isHit());
+        $this->assertSame('value', $this->pool->getItem('item')->get());
     }
 
     public function testItHasAnItem(): void
     {
-        self::assertFalse($this->pool->hasItem('key'));
+        $this->assertFalse($this->pool->hasItem('key'));
 
         $item = $this->pool->getItem('key');
         $item->set('value');
         $this->pool->save($item);
 
-        self::assertTrue($this->pool->hasItem('key'));
+        $this->assertTrue($this->pool->hasItem('key'));
     }
 
     public function testItCommitsDeferredItems(): void
@@ -86,22 +87,22 @@ final class InMemoryCacheTest extends TestCase
 
         $this->pool->saveDeferred($item);
 
-        self::assertFalse($this->pool->getItem('item')->isHit());
+        $this->assertFalse($this->pool->getItem('item')->isHit());
 
         $this->pool->commit();
 
-        self::assertTrue($this->pool->getItem('item')->isHit());
+        $this->assertTrue($this->pool->getItem('item')->isHit());
     }
 
     public function testItCanBeCleared(): void
     {
         $this->pool->save($this->pool->getItem('key')->set('value'));
 
-        self::assertTrue($this->pool->getItem('key')->isHit());
+        $this->assertTrue($this->pool->getItem('key')->isHit());
 
         $this->pool->clear();
 
-        self::assertFalse($this->pool->getItem('key')->isHit());
+        $this->assertFalse($this->pool->getItem('key')->isHit());
     }
 
     public function testItReturnsMultipleItems(): void
@@ -111,35 +112,35 @@ final class InMemoryCacheTest extends TestCase
 
         $items = $this->pool->getItems(['first', 'second', 'third']);
 
-        self::assertCount(3, $items);
-        self::assertIsArray($items);
+        $this->assertCount(3, $items);
+        $this->assertIsArray($items);
 
-        self::assertArrayHasKey('first', $items);
-        self::assertTrue($items['first']->isHit());
+        $this->assertArrayHasKey('first', $items);
+        $this->assertTrue($items['first']->isHit());
 
-        self::assertArrayHasKey('second', $items);
-        self::assertFalse($items['second']->isHit());
+        $this->assertArrayHasKey('second', $items);
+        $this->assertFalse($items['second']->isHit());
 
-        self::assertArrayHasKey('third', $items);
-        self::assertTrue($items['third']->isHit());
+        $this->assertArrayHasKey('third', $items);
+        $this->assertTrue($items['third']->isHit());
     }
 
     public function testItReturnsNoItemsWhenNoKeysAreGiven(): void
     {
         $this->pool->save($this->pool->getItem('key')->set('value'));
 
-        self::assertEmpty($this->pool->getItems());
+        $this->assertEmpty($this->pool->getItems());
     }
 
     public function testItDeletesAnItem(): void
     {
         $this->pool->save($this->pool->getItem('key')->set('value'));
 
-        self::assertTrue($this->pool->hasItem('key'));
+        $this->assertTrue($this->pool->hasItem('key'));
 
         $this->pool->deleteItem('key');
 
-        self::assertFalse($this->pool->hasItem('key'));
+        $this->assertFalse($this->pool->hasItem('key'));
     }
 
     public function testItDeletesMultipleItems(): void
@@ -150,9 +151,9 @@ final class InMemoryCacheTest extends TestCase
 
         $this->pool->deleteItems(['first', 'third', 'fourth']);
 
-        self::assertFalse($this->pool->hasItem('first'));
-        self::assertTrue($this->pool->hasItem('second'));
-        self::assertFalse($this->pool->hasItem('third'));
-        self::assertFalse($this->pool->hasItem('fourth'));
+        $this->assertFalse($this->pool->hasItem('first'));
+        $this->assertTrue($this->pool->hasItem('second'));
+        $this->assertFalse($this->pool->hasItem('third'));
+        $this->assertFalse($this->pool->hasItem('fourth'));
     }
 }

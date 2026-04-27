@@ -13,7 +13,9 @@ use PHPUnit\Framework\TestCase;
 final class CacheItemTest extends TestCase
 {
     private string $key;
+
     private FrozenClock $clock;
+
     private CacheItem $cacheItem;
 
     protected function setUp(): void
@@ -25,31 +27,31 @@ final class CacheItemTest extends TestCase
 
     public function testItHasAKey(): void
     {
-        self::assertSame($this->key, $this->cacheItem->getKey());
+        $this->assertSame($this->key, $this->cacheItem->getKey());
     }
 
     public function testItInitiallyHasNoValue(): void
     {
-        self::assertNull($this->cacheItem->get());
+        $this->assertNull($this->cacheItem->get());
     }
 
     public function testItInitiallyIsNotAHit(): void
     {
-        self::assertFalse($this->cacheItem->isHit());
+        $this->assertFalse($this->cacheItem->isHit());
     }
 
     public function testItHasAValueWhenSetWithOne(): void
     {
         $this->cacheItem->set('value');
 
-        self::assertSame('value', $this->cacheItem->get());
+        $this->assertSame('value', $this->cacheItem->get());
     }
 
     public function testItBecomesHitWhenSetWithAValue(): void
     {
         $this->cacheItem->set('value');
 
-        self::assertTrue($this->cacheItem->isHit());
+        $this->assertTrue($this->cacheItem->isHit());
     }
 
     public function testItHasAValueAsLongAsItIsNotExpiredAtAGivenTime(): void
@@ -57,7 +59,7 @@ final class CacheItemTest extends TestCase
         $this->cacheItem->set('value');
         $this->cacheItem->expiresAt($this->clock->now()->modify('+1 minute'));
 
-        self::assertSame('value', $this->cacheItem->get());
+        $this->assertSame('value', $this->cacheItem->get());
     }
 
     public function testItHasNoValueWhenItIsExpiredAtAGivenTime(): void
@@ -65,7 +67,7 @@ final class CacheItemTest extends TestCase
         $this->cacheItem->set('value');
         $this->cacheItem->expiresAt($this->clock->now()->modify('-1 minute'));
 
-        self::assertNull($this->cacheItem->get());
+        $this->assertNull($this->cacheItem->get());
     }
 
     public function testItIsAHitAsLongAsItIsNotExpiredAtAGivenTime(): void
@@ -73,7 +75,7 @@ final class CacheItemTest extends TestCase
         $this->cacheItem->set('value');
         $this->cacheItem->expiresAt($this->clock->now()->modify('+1 minute'));
 
-        self::assertTrue($this->cacheItem->isHit());
+        $this->assertTrue($this->cacheItem->isHit());
     }
 
     public function testItIsAMissWhenItIsExpiredAtAGivenTime(): void
@@ -81,7 +83,7 @@ final class CacheItemTest extends TestCase
         $this->cacheItem->set('value');
         $this->cacheItem->expiresAt($this->clock->now()->modify('-1 minute'));
 
-        self::assertFalse($this->cacheItem->isHit());
+        $this->assertFalse($this->cacheItem->isHit());
     }
 
     public function testTheExpirationCanBeGivenInSeconds(): void
@@ -92,7 +94,7 @@ final class CacheItemTest extends TestCase
         $this->cacheItem->expiresAfter(60);
         $this->clock->setTo($this->clock->now()->modify('+61 seconds'));
 
-        self::assertFalse($this->cacheItem->isHit());
+        $this->assertFalse($this->cacheItem->isHit());
     }
 
     public function testTheExpirationCanBeGivenAsADateInterval(): void
@@ -103,7 +105,7 @@ final class CacheItemTest extends TestCase
         $this->cacheItem->expiresAfter(new \DateInterval('PT60S'));
         $this->clock->setTo($this->clock->now()->modify('+61 seconds'));
 
-        self::assertFalse($this->cacheItem->isHit());
+        $this->assertFalse($this->cacheItem->isHit());
     }
 
     public function testTheExpirationCanBeUnset(): void
@@ -115,7 +117,7 @@ final class CacheItemTest extends TestCase
 
         $this->cacheItem->expiresAfter(null);
 
-        self::assertTrue($this->cacheItem->isHit());
+        $this->assertTrue($this->cacheItem->isHit());
 
 
     }

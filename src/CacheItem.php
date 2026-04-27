@@ -11,7 +11,9 @@ use Psr\Clock\ClockInterface;
 final class CacheItem implements CacheItemInterface
 {
     private mixed $value;
+
     private ?\DateTimeInterface $expiresAt;
+
     private bool $isHit;
 
     public function __construct(private readonly CacheKey $key, private readonly ClockInterface $clock)
