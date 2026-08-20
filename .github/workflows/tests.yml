@@ -30,6 +30,9 @@ jobs:
           - "8.3"
           - "8.4"
           - "8.5"
+        include:
+          - php: "8.6"
+            composer-options: "--ignore-platform-req=php+"
 
     env:
       extensions: ctype, dom, intl, json, mbstring, openssl, xml, zip, zlib
