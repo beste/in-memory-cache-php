@@ -129,7 +129,7 @@ final class InMemoryCacheTest extends TestCase
     {
         $this->pool->save($this->pool->getItem('key')->set('value'));
 
-        $this->assertEmpty($this->pool->getItems());
+        $this->assertSame([], $this->pool->getItems());
     }
 
     public function testItDeletesAnItem(): void
